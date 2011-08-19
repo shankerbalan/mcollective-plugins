@@ -13,8 +13,8 @@ module MCollective
 
       def initialize
         @meta = {:license => "BSD",
-          :author => "Shanker Balan <mail@shankerbalan.net>"
-          :url => "http://shankerbalan.net/"}
+          :author => "Shanker Balan <mail@shankerbalan.net>",
+          :url    => "http://shankerbalan.net/"}
 
         require 'redis'
 
