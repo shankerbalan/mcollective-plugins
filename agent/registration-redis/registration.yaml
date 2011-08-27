@@ -1,0 +1,19 @@
+# all keys are mandatory
+--- 
+facts:
+  enabled: 1
+  skip:
+    memoryfree: 1
+    uptime: 1
+    uptime_days: 1
+    uptime_hours: 1
+    uptime_seconds: 1
+    swapfree: 1
+    swapsize: 1
+    timezone: 1
+agentlist:
+  enabled: 0
+classes:
+  enabled: 0
+
+# vim: set ts=2 sw=2 expandtab:
