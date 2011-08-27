@@ -19,9 +19,11 @@ Configuration
 
 - mcollective/server.conf
 
-plugin.registration.redis_host = 127.0.0.1
-plugin.registration.redis_port = 6379
-plugin.registration.config = /etc/mcollective/registration.yaml
+<pre>
+  plugin.registration.redis_host = 127.0.0.1
+  plugin.registration.redis_port = 6379
+  plugin.registration.config = /etc/mcollective/registration.yaml
+</pre>
 
 - /etc/mcollective/registration.yaml
 
