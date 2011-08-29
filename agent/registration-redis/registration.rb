@@ -69,6 +69,7 @@ module MCollective
       end
 
       Log.instance.debug("Received valid registration update from sender #{senderid} at #{lastseen}")
+      @redis.publish("registration.info","#{fqdn}: Received valid registration update from sender #{senderid} at #{lastseen}")
 
       tmp_ttl = 300
       # tmp keys
@@ -116,6 +117,7 @@ module MCollective
         end
 
         @redis.set(fqdn_tmp_lastseen, lastseen)
+        @redis.expire(fqdn_tmp_lastseen, tmp_ttl)
       end
 
       # last
@@ -136,7 +138,7 @@ module MCollective
         diff_facts  = tmp_facts - last_facts
 
         unless diff_facts.any?
-          Log.instance.info("#{fqdn}: No updated needed")
+          Log.instance.info("#{fqdn}: Nothing to update")
         else
           Log.instance.debug("#{fqdn}: facts need updating (#{diff_facts})")
           needupdate = 1
@@ -160,6 +162,7 @@ module MCollective
           @redis.rename(fqdn_tmp_lastseen,  fqdn_new_lastseen)
           @redis.sadd(fqdn, lastseen)
           Log.instance.debug("#{fqdn_tmp} moved to #{fqdn_new}")
+          @redis.publish("registration.info","#{fqdn_new} has been updated at #{lastseen}")
         end
       end
 
